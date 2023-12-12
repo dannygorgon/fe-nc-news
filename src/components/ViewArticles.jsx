@@ -23,7 +23,8 @@ function ViewArticles() {
         <div key={article.article_id}>
           <img src={article.article_img_url} alt={`A picture of ${article.title}`} />
           <h2>{article.title}</h2>
-          <p>{article.body}</p>
+          <p>Written by {article.author}</p>
+          <a href="">coding</a>
         </div>
       ))}
     </div>
