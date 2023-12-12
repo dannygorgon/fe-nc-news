@@ -9,3 +9,9 @@ export const getAllArticles = () => {
     .then(res => res.data.articles)
     .catch(err => console.error(err));
 };
+
+export const getArticleById = (articleId) => {
+  return api.get(`/articles/${articleId}`)
+    .then(res => res.data.article)
+    .catch(err => console.error(err));
+};

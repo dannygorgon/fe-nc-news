@@ -20,12 +20,12 @@ function ViewArticles() {
   if (isLoading)
   return <LoadSpinner/>;
   return (
-    <div className='article-list-container'>
+    <div className='flex flex-col justify-center items-center'>
  
         <h1>View Articles</h1>
         {articles.map(article => (
         
-          <div className="article-card" key={article.article_id}>
+          <div className="flex flex-col justify-center items-center border border-black m-10 p-10 rounded-5 bg-gray-200" key={article.article_id}>
             <Link to={`/articles/${article.article_id}`}> 
             <img src={article.article_img_url} alt={`A picture of ${article.title}`} />
             <h2>{article.title}</h2>
