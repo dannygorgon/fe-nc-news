@@ -5,15 +5,23 @@ import LoadSpinner from "../LoadSpinner";
 const Article = () => {
   const { articleId } = useParams();
   const [article, setArticle] = useState(null);
+  const [isLoading, setIsLoading] = useState(true)
 
   useEffect(() => {
     getArticleById(articleId)
-      .then((articleFromApi) => setArticle(articleFromApi))
+    .then((articleFromApi) => {
+        setArticle(articleFromApi);
+        setIsLoading(false)
+      })
       .catch((err) => console.error(err));
   }, [articleId]);
 
-  if (!article) {
+  if (isLoading) {
     return <LoadSpinner />;
+  }
+
+  if (!article) {
+    return <p>Article not found</p>;
   }
 
   return (
