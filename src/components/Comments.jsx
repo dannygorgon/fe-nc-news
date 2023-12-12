@@ -28,13 +28,13 @@ function Comments() {
   
     return (
       <div>
-        <h1>Comments</h1>
+        <h1 className="text-2xl">Comments</h1>
         {comments.map((comment) => (
               <div key={comment.comment_id}>
                 <div className="comments p-4 bg-slate-400 m-4">
-
+                <p>Author: {comment.author}</p>
               <p>{comment.body}</p>
-              <p>Author: {comment.author}</p>
+          
               <p>Posted on: {new Date(comment.created_at).toLocaleDateString()}</p>
                 </div>
             </div>

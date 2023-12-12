@@ -29,7 +29,22 @@ img {
     
 }
 
-
+@layer base {
+  :root {
+    --text: #09060f;
+    --background: #f3f0fa;
+    --primary: #6f49bc;
+    --secondary: #c497d8;
+    --accent: #bb6fc8;
+  }
+  .dark {
+    --text: #f3f0f9;
+    --background: #08050f;
+    --primary: #6a43b6;
+    --secondary: #542768;
+    --accent: #833790;
+  }
+}
 
 
 @keyframes ldio-vudct9dnim {
