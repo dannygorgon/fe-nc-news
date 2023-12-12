@@ -25,7 +25,7 @@ const Article = () => {
       <h1>{article.title}</h1>
       <p>Written by {article.author}</p>
       <p>
-        Posted on 
+        Posted on
         {new Date(article.created_at).toLocaleDateString("en-GB", {
           day: "numeric",
           month: "long",
