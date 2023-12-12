@@ -21,10 +21,13 @@ function ViewArticles() {
         <div key={article.article_id}>
           <img src={article.article_img_url} alt={`A picture of ${article.title}`} />
           <h2>{article.title}</h2>
-          <p></p>
+       
           <p>Written by {article.author}</p>
-          <p>Date posted {new Date(article.created_at).toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' })}</p>          <p>Votes: {article.votes}</p>
-          <a href="">coding</a>e
+
+          <p>Date posted {new Date(article.created_at).toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' })}</p>          
+          <p>Votes: {article.votes}</p>
+          <p>{article.comment_count} comments</p>
+          <a href="">coding</a>
         </div>
       ))}
     </div>
