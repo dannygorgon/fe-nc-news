@@ -1,15 +1,14 @@
-import * as React from 'react';
-import ReactDOM from 'react-dom';
-import App from './App.jsx';
-import { createRoot } from 'react-dom/client';
+import * as React from "react";
+import ReactDOM from "react-dom";
+import App from "./App.jsx";
+import { createRoot } from "react-dom/client";
+import "./App.css";
 
-import CssBaseline from '@mui/material/CssBaseline';
-import ViewArticles from './components/ViewArticles.jsx';
+import CssBaseline from "@mui/material/CssBaseline";
 
-ReactDOM.createRoot(document.getElementById('root')).render(
+ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-       <CssBaseline />
+    <CssBaseline />
     <App />
-    <ViewArticles />
-  </React.StrictMode>,
-)
+  </React.StrictMode>
+);
