@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { getArticleById } from "../utils/api";
 import LoadSpinner from "../LoadSpinner";
+import Comments from "../Comments";
 const Article = () => {
   const { articleId } = useParams();
   const [article, setArticle] = useState(null);
@@ -49,7 +50,9 @@ const Article = () => {
         </p>
       </div>
       <p>{article.body}</p>
+      <Comments /> 
     </div>
+  
   );
 };
 
