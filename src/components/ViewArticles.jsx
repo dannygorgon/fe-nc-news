@@ -8,7 +8,7 @@ function ViewArticles() {
   useEffect(() => {
     getAllArticles()
       .then((articlesFromApi) => {
-        console.log(articlesFromApi);
+
         setArticles(articlesFromApi);
         setIsLoading(false);
       })
