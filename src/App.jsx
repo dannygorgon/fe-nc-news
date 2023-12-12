@@ -8,9 +8,9 @@ function App() {
 
   return (
     <>
-  <button className="bg-blue-500 text-white px-4 py-2 rounded">
-    Click me
-  </button>
+      <Button variant="contained" color="primary">
+        Click me
+      </Button>
 
     <h1>I am the App</h1>
     </>
