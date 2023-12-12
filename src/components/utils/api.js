@@ -6,6 +6,6 @@ const api = axios.create({
 
 export const getAllArticles = () => {
   return api.get('/articles')
-    .then(res => res.data)
+    .then(res => res.data.articles)
     .catch(err => console.error(err));
 };

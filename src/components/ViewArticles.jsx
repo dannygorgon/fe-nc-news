@@ -1,18 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-
+import { getAllArticles } from './utils/api';
 function ViewArticles() {
   const [articles, setArticles] = useState([]);
-
+  
   useEffect(() => {
-    axios.get('http://localhost:9090/api/articles')
-      .then(res => {
-        setArticles(res.data.articles);
-        console.log(res.data.articles);
+    getAllArticles()
+      .then((articlesFromApi) => {
+        setArticles(articlesFromApi);
       })
-      .catch(err => {
-        console.error(err);
-      });
+      .catch((err) => console.error(err));
   }, []);
 
   return (
