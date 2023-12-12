@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import LoadSpinner from './LoadSpinner';
 
 import { getAllArticles } from './utils/api';
 function ViewArticles() {
@@ -16,26 +17,7 @@ function ViewArticles() {
   }, []);
 
   if (isLoading)
-  return (
-    <div className="loading-spinner">
-      <div className="loadingio-spinner-spinner-j1bk3azki7">
-        <div className="ldio-vudct9dnim">
-          <div></div>
-          <div></div>
-          <div></div>
-          <div></div>
-          <div></div>
-          <div></div>
-          <div></div>
-          <div></div>
-          <div></div>
-          <div></div>
-          <div></div>
-          <div></div>
-        </div>
-      </div>
-    </div>
-  );
+  return <LoadSpinner/>;
   return (
     <div className='article-list-container'>
  
