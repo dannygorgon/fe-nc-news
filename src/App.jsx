@@ -1,20 +1,19 @@
-import { useState } from 'react'
-import Button from '@mui/material/Button';
-import React from 'react';
 
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import './App.css'
+import Home from './components/pages/Home';
+
 
 function App() {
-
   return (
-    <>
-      <Button variant="contained" color="primary">
-        Click me
-      </Button>
+    <Router>
 
-    <h1>I am the App</h1>
-    </>
+      <Routes>
+        <Route path="/" element={<Home />} /> 
+      </Routes>
+    </Router>
   )
 }
 
-export default App
+export default App;
