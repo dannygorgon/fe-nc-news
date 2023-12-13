@@ -24,3 +24,10 @@ export const getCommentsByArticleId = (articleId) => {
     .then((res) => res.data.comments)
     .catch((err) => console.error(err));
 };
+
+export const patchArticleVotes = (articleId, vote) => {
+  return api
+    .patch(`/articles/${articleId}`, { inc_votes: vote })
+    .then((res) => res.data.article)
+    .catch((err) => console.error(err));
+}
