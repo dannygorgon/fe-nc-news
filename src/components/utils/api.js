@@ -25,9 +25,9 @@ export const getCommentsByArticleId = (articleId) => {
     .catch((err) => console.error(err));
 };
 
-export const patchArticleVotes = (articleId, vote) => {
+export const patchArticleVotes = (articleId, increment) => {
   return api
-    .patch(`/articles/${articleId}`, { inc_votes: vote })
-    .then((res) => res.data.article)
+    .patch(`/articles/${articleId}`, { inc_votes: increment })
+    .then((res) => res.data)
     .catch((err) => console.error(err));
-}
+};
