@@ -5,6 +5,7 @@ import Home from "./components/pages/Home";
 import Article from "./components/pages/Article";
 import { UserProvider } from "../contexts/UserContexts";
 import Header from "./components/Header";
+import ProfilePage from "./components/ProfilePage";
 
 function App() {
   return (
@@ -14,6 +15,8 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/articles/:articleId" element={<Article />} />
+        <Route path="/profile" element={<ProfilePage />} />
+
       </Routes>
     </Router>
     </UserProvider>
