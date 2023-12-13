@@ -20,7 +20,7 @@ function ViewArticles() {
 
   if (isLoading) return <LoadSpinner />;
   return (
-    <div className="flex flex-col justify-center items-center">
+    <div className="flex flex-col justify-center items-center bg-gradient-to-t from-blue-500 to-neutral-300">
       <h1>View Articles</h1>
       {articles.map((article) => (
         <div

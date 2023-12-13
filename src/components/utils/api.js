@@ -17,3 +17,10 @@ export const getArticleById = (articleId) => {
     .then((res) => res.data.article)
     .catch((err) => console.error(err));
 };
+
+export const getCommentsByArticleId = (articleId) => {
+  return api
+    .get(`/articles/${articleId}/comments`)
+    .then((res) => res.data.comments)
+    .catch((err) => console.error(err));
+};
