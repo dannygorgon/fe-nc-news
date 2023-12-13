@@ -75,7 +75,7 @@ const handleIncrementVote = (increment) => {
       <div className="article-body">
       </div>
       <p>{article.body}</p>
-      <Comments /> 
+      <Comments articleId={articleId} />
     </div>
   
   );

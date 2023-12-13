@@ -33,8 +33,13 @@ export const patchArticleVotes = (articleId, increment) => {
 };
 
 export const postComment = (articleId, username, body) => {
+  if (!articleId || !username || !body) {
+    console.error('Invalid arguments', { articleId, username, body });
+    return Promise.reject(new Error('Invalid arguments'));
+  }
+
   return api
-    .post(`/articles/${articleId}/comments`, { username, body })
-    .then((res) => res.data.comment)
-    .catch((err) => console.error(err));
+  .post(`/articles/${articleId}/comments`, { username, body })
+  .then((res) => res.data.comment)
+  .catch((err) => console.error(err));
 }
