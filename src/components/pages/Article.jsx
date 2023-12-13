@@ -4,7 +4,7 @@ import axios from 'axios';
 import { getArticleById, patchArticleVotes } from "../utils/api";
 import LoadSpinner from "../LoadSpinner";
 import Comments from "../Comments";
-
+import ThumbUpAltIcon from '@mui/icons-material/ThumbUpAlt';
 const Article = () => {
   const { articleId } = useParams();
   const [article, setArticle] = useState(null);
@@ -63,12 +63,13 @@ const handleIncrementVote = (increment) => {
           Category: <a href="">coding</a>
         </p>
       <p>{votes} votes</p>
-      <p>{article.comment_count} comments</p>
- 
       {error && <p>{error}</p>}
       <button onClick={() => handleIncrementVote(1)}> 
-      <img src="https://symbl-world.akamaized.net/i/webp/e4/3ae1e67e0faa5a469c338e5b35cd9b.webp" width="20px" alt="thumbs up" />
+      <ThumbUpAltIcon />
  </button>
+      <p>{article.comment_count} comments</p>
+ 
+
       </div>
 
       <div className="article-body">
