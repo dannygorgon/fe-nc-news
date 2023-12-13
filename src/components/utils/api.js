@@ -31,3 +31,10 @@ export const patchArticleVotes = (articleId, increment) => {
     .then((res) => res.data)
     .catch((err) => console.error(err));
 };
+
+export const postComment = (articleId, username, body) => {
+  return api
+    .post(`/articles/${articleId}/comments`, { username, body })
+    .then((res) => res.data.comment)
+    .catch((err) => console.error(err));
+}
