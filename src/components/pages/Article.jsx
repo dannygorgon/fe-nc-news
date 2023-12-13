@@ -1,21 +1,38 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import { getArticleById } from "../utils/api";
+import axios from 'axios';
+import { getArticleById, patchArticleVotes } from "../utils/api";
 import LoadSpinner from "../LoadSpinner";
 import Comments from "../Comments";
+
 const Article = () => {
   const { articleId } = useParams();
   const [article, setArticle] = useState(null);
-  const [isLoading, setIsLoading] = useState(true)
+  const [isLoading, setIsLoading] = useState(true);
+  const [votes, setVotes] = useState(0);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     getArticleById(articleId)
-    .then((articleFromApi) => {
+      .then((articleFromApi) => {
         setArticle(articleFromApi);
-        setIsLoading(false)
+        setVotes(articleFromApi.votes);
+        setIsLoading(false);
       })
       .catch((err) => console.error(err));
   }, [articleId]);
+
+const handleIncrementVote = (increment) => {
+  setVotes((previousVote) => previousVote + increment);
+  patchArticleVotes(articleId, increment)
+    .then(() => {
+      setError(null);
+    })
+    .catch((err) => {
+      setError('Failed to update votes');
+      setVotes((previousVote) => previousVote - increment);
+    });
+};
 
   if (isLoading) {
     return <LoadSpinner />;
@@ -45,8 +62,13 @@ const Article = () => {
         <p>
           Category: <a href="">coding</a>
         </p>
-      <p>{article.votes} votes</p>
+      <p>{votes} votes</p>
       <p>{article.comment_count} comments</p>
+ 
+      {error && <p>{error}</p>}
+      <button onClick={() => handleIncrementVote(1)}> 
+      <img src="https://symbl-world.akamaized.net/i/webp/e4/3ae1e67e0faa5a469c338e5b35cd9b.webp" width="20px" alt="thumbs up" />
+ </button>
       </div>
 
       <div className="article-body">
