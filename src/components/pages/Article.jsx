@@ -1,10 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import axios from 'axios';
+import axios from "axios";
 import { getArticleById, patchArticleVotes } from "../utils/api";
 import LoadSpinner from "../LoadSpinner";
 import Comments from "../Comments";
-import ThumbUpAltIcon from '@mui/icons-material/ThumbUpAlt';
+import Chip from "@mui/material/Chip";
+import Stack from "@mui/material/Stack";
+import ThumbUpIcon from "@mui/icons-material/ThumbUp";
+
 const Article = () => {
   const { articleId } = useParams();
   const [article, setArticle] = useState(null);
@@ -22,17 +25,17 @@ const Article = () => {
       .catch((err) => console.error(err));
   }, [articleId]);
 
-const handleIncrementVote = (increment) => {
-  setVotes((previousVote) => previousVote + increment);
-  patchArticleVotes(articleId, increment)
-    .then(() => {
-      setError(null);
-    })
-    .catch((err) => {
-      setError('Failed to update votes');
-      setVotes((previousVote) => previousVote - increment);
-    });
-};
+  const handleIncrementVote = (increment) => {
+    setVotes((previousVote) => previousVote + increment);
+    patchArticleVotes(articleId, increment)
+      .then(() => {
+        setError(null);
+      })
+      .catch((err) => {
+        setError("Failed to update votes");
+        setVotes((previousVote) => previousVote - increment);
+      });
+  };
 
   if (isLoading) {
     return <LoadSpinner />;
@@ -50,34 +53,39 @@ const handleIncrementVote = (increment) => {
       />
       <h1 className="text-3xl font-bold text-center">{article.title}</h1>
       <div className="detail-text flex justify-around">
-          <p>Written by {article.author}</p>
-          <p>
-            Posted on
-            {new Date(article.created_at).toLocaleDateString("en-GB", {
-              day: "numeric",
-              month: "long",
-              year: "numeric",
-            })}
-          </p>
+        <p>Written by {article.author}</p>
         <p>
-          Category: <a href="">coding</a>
+          Posted on { "  "}
+          {new Date(article.created_at).toLocaleDateString("en-GB", {
+            day: "numeric",
+            month: "long",
+            year: "numeric",
+          })}
         </p>
-      <p>{votes} votes</p>
-      {error && <p>{error}</p>}
-      <button onClick={() => handleIncrementVote(1)}> 
-      <ThumbUpAltIcon />
- </button>
-      <p>{article.comment_count} comments</p>
- 
 
+
+        {error && <p>{error}</p>}
+        <Stack direction="row" spacing={1}>
+          <Chip
+            icon={<ThumbUpIcon />}
+            label={`Votes: ${votes}`}
+            clickable
+            onClick={() => handleIncrementVote(1)}
+          />
+        </Stack>
       </div>
 
       <div className="article-body">
+        <p>{article.body}</p>
       </div>
-      <p>{article.body}</p>
-      <Comments articleId={articleId} />
+
+      <p>
+          Category: <a href="">coding</a>
+        </p>
+      <div className="comment-container">
+        <Comments articleId={articleId} />
+      </div>
     </div>
-  
   );
 };
 
