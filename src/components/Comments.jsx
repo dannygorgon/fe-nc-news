@@ -7,6 +7,9 @@ import SubmitComment from "./SubmitComment";
 import { UserContext } from "../../contexts/UserContexts";
 
 
+
+
+
 function Comments() {
     const { articleId } = useParams(); // Get the articleId from the URL parameters
     const [comments, setComments] = useState([]);
@@ -43,6 +46,7 @@ function Comments() {
   
     return (
       <div>
+        
         <h1 className="text-2xl">Comments</h1>
         <SubmitComment onSubmit={handleCommentSubmit} /> 
         {comments.map((comment) => (
