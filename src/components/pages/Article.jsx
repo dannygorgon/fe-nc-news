@@ -52,28 +52,29 @@ const Article = () => {
         alt={`A picture of ${article.title}`}
       />
       <h1 className="text-3xl font-bold text-center">{article.title}</h1>
-      <div className="detail-text flex justify-around">
-        <p>Written by {article.author}</p>
-        <p>
-          Posted on { "  "}
-          {new Date(article.created_at).toLocaleDateString("en-GB", {
-            day: "numeric",
-            month: "long",
-            year: "numeric",
-          })}
-        </p>
+      <div className="detail-text flex justify-evenly items-center"> {/* Add items-center */}
+  <p>Written by {article.author}</p>
+  <p>
+    Posted on { "  "}
+    {new Date(article.created_at).toLocaleDateString("en-GB", {
+      day: "numeric",
+      month: "long",
+      year: "numeric",
+    })}
+  </p>
 
-
-        {error && <p>{error}</p>}
-        <Stack direction="row" spacing={1}>
-          <Chip
-            icon={<ThumbUpIcon />}
-            label={`Votes: ${votes}`}
-            clickable
-            onClick={() => handleIncrementVote(1)}
-          />
-        </Stack>
-      </div>
+  {error && <p>{error}</p>}
+  <div className="flex items-center"> {/* Add this div */}
+    <Stack direction="row" spacing={1}>
+      <Chip
+        icon={<ThumbUpIcon />}
+        label={`Votes: ${votes}`}
+        clickable
+        onClick={() => handleIncrementVote(1)}
+      />
+    </Stack>
+  </div>
+</div>
 
       <div className="article-body">
         <p>{article.body}</p>
