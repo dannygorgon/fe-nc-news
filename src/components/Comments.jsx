@@ -13,7 +13,7 @@ function Comments() {
   const [comments, setComments] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const { user } = useContext(UserContext);
-
+  const [isDeleted, setIsDeleted] = useState(false);
   useEffect(() => {
     setIsLoading(true);
     getCommentsByArticleId(articleId)
@@ -32,6 +32,7 @@ function Comments() {
       .then((newComment) => {
         setComments((prevComments) => [newComment, ...prevComments]);
       })
+
       .catch((err) => console.error(err));
   };
 
@@ -41,6 +42,7 @@ function Comments() {
         setComments((prevComments) => {
           return prevComments.filter((comment) => comment.comment_id !== comment_id);
         });
+        setIsDeleted(true)
       })
       .catch((err) => console.error(err));
   }
@@ -53,6 +55,8 @@ function Comments() {
     <div>
       <h1 className="text-2xl">Comments</h1>
       <SubmitComment onSubmit={handleCommentSubmit} />
+      {isDeleted && <div className="text-green-500">Message deleted</div>} {/* add this line */}
+
       {comments.map((comment) => {
   return (
     <div key={comment.comment_id}>
