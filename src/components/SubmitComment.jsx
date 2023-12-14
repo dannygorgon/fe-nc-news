@@ -7,9 +7,9 @@ const SubmitComment = ({ onSubmit }) => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    setIsSubmitted(false); // Add this line
+    setIsSubmitted(false);
     if (!comment) {
-      setError('Comment cannot be empty');
+      setError("Comment cannot be empty");
       return;
     }
     setError(null);
@@ -17,19 +17,22 @@ const SubmitComment = ({ onSubmit }) => {
       await onSubmit(comment);
       setIsSubmitted(true);
     } catch (err) {
-      setError('Failed to submit comment');
+      setError("Failed to submit comment");
     }
     setComment("");
   };
 
   return (
     <div>
-      {isSubmitted && <div style={{ color: 'green' }}>Form submitted</div>}
-      {error && <div style={{ color: 'red' }}>{error}</div>}
+      {isSubmitted && <div style={{ color: "green" }}>Form submitted</div>}
+      {error && <div style={{ color: "red" }}>{error}</div>}
       <form onSubmit={handleSubmit}>
         <label>
-          
-          <textarea placeholder="Enter a comment!" value={comment} onChange={(e) => setComment(e.target.value)} />
+          <textarea
+            placeholder="Enter a comment!"
+            value={comment}
+            onChange={(e) => setComment(e.target.value)}
+          />
         </label>
         <button type="submit">Submit</button>
       </form>
