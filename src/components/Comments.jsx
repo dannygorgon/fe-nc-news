@@ -1,13 +1,21 @@
 import React, { useState, useEffect } from "react";
+import { useContext } from "react";
 import { useParams } from 'react-router-dom';
 import LoadSpinner from "./LoadSpinner";
-import { getCommentsByArticleId } from "./utils/api";
+import { getCommentsByArticleId, postComment } from "./utils/api";
+import SubmitComment from "./SubmitComment";
+import { UserContext } from "../../contexts/UserContexts";
+
+
+
 
 
 function Comments() {
     const { articleId } = useParams(); // Get the articleId from the URL parameters
     const [comments, setComments] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
+    const { user } = useContext(UserContext); 
+
   
     useEffect(() => {
       setIsLoading(true);
@@ -21,6 +29,16 @@ function Comments() {
           setIsLoading(false);
         });
     }, [articleId]);
+
+    const handleCommentSubmit = (body) => { 
+
+      
+      postComment(articleId, user, body)
+        .then((newComment) => {
+          setComments((prevComments) => [newComment, ...prevComments]);
+        })
+        .catch((err) => console.error(err));
+    };
   
     if (isLoading) {
       return <LoadSpinner />;
@@ -28,7 +46,9 @@ function Comments() {
   
     return (
       <div>
+        
         <h1 className="text-2xl">Comments</h1>
+        <SubmitComment onSubmit={handleCommentSubmit} /> 
         {comments.map((comment) => (
               <div key={comment.comment_id}>
                 <div className="comments p-4 bg-slate-400 m-4">

@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const api = axios.create({
-  baseURL: "http://localhost:9090/api",
+  baseURL: "https://nc-news-riu3.onrender.com/api",
 });
 
 export const getAllArticles = () => {
@@ -31,3 +31,18 @@ export const patchArticleVotes = (articleId, increment) => {
     .then((res) => res.data)
     .catch((err) => console.error(err));
 };
+
+export const postComment = (articleId, username, body) => {
+  if (!articleId || !username || !body) {
+    console.error('Invalid arguments', { articleId, username, body });
+    return Promise.reject(new Error('Invalid arguments'));
+  }
+
+  return api
+  .post(`/articles/${articleId}/comments`, { username, body })
+  .then((res) => res.data.comment)
+  .catch((err) => {
+    console.error(err);
+    return { status: 'error', message: err.message };
+  })
+}

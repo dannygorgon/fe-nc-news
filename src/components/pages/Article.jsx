@@ -1,9 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import axios from 'axios';
+import axios from "axios";
 import { getArticleById, patchArticleVotes } from "../utils/api";
 import LoadSpinner from "../LoadSpinner";
 import Comments from "../Comments";
+import Chip from "@mui/material/Chip";
+import Stack from "@mui/material/Stack";
+import ThumbUpIcon from "@mui/icons-material/ThumbUp";
 
 const Article = () => {
   const { articleId } = useParams();
@@ -11,6 +14,7 @@ const Article = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [votes, setVotes] = useState(0);
   const [error, setError] = useState(null);
+  const [hasVoted , setHasVoted] = useState(false);
 
   useEffect(() => {
     getArticleById(articleId)
@@ -22,17 +26,23 @@ const Article = () => {
       .catch((err) => console.error(err));
   }, [articleId]);
 
-const handleIncrementVote = (increment) => {
-  setVotes((previousVote) => previousVote + increment);
-  patchArticleVotes(articleId, increment)
-    .then(() => {
-      setError(null);
-    })
-    .catch((err) => {
-      setError('Failed to update votes');
-      setVotes((previousVote) => previousVote - increment);
-    });
-};
+  const handleIncrementVote = (increment) => {
+    if (hasVoted) {
+      setError('You have already voted');
+      return;
+    }
+    setVotes((previousVote) => previousVote + increment);
+    setHasVoted(true);
+    patchArticleVotes(articleId, increment)
+      .then(() => {
+        setError(null);
+      })
+      .catch((err) => {
+        setError("Failed to update votes");
+        setVotes((previousVote) => previousVote - increment);
+        setHasVoted(false);
+      });
+  };
 
   if (isLoading) {
     return <LoadSpinner />;
@@ -49,34 +59,41 @@ const handleIncrementVote = (increment) => {
         alt={`A picture of ${article.title}`}
       />
       <h1 className="text-3xl font-bold text-center">{article.title}</h1>
-      <div className="detail-text flex justify-around">
-          <p>Written by {article.author}</p>
-          <p>
-            Posted on
-            {new Date(article.created_at).toLocaleDateString("en-GB", {
-              day: "numeric",
-              month: "long",
-              year: "numeric",
-            })}
-          </p>
-        <p>
-          Category: <a href="">coding</a>
-        </p>
-      <p>{votes} votes</p>
-      <p>{article.comment_count} comments</p>
- 
-      {error && <p>{error}</p>}
-      <button onClick={() => handleIncrementVote(1)}> 
-      <img src="https://symbl-world.akamaized.net/i/webp/e4/3ae1e67e0faa5a469c338e5b35cd9b.webp" width="20px" alt="thumbs up" />
- </button>
-      </div>
+      <div className="detail-text flex justify-evenly items-center"> {/* Add items-center */}
+  <p>Author: {article.author}</p>
+  <p>
+    Posted: { "  "}
+    {new Date(article.created_at).toLocaleDateString("en-GB", {
+      day: "numeric",
+      month: "long",
+      year: "numeric",
+    })}
+  </p>
+
+  {error && <p>{error}</p>}
+  <div className="flex items-center"> {/* Add this div */}
+    <Stack direction="row" spacing={1}>
+      <Chip
+        icon={<ThumbUpIcon />}
+        label={`Votes: ${votes}`}
+        clickable
+        onClick={() => handleIncrementVote(1)}
+      />
+    </Stack>
+  </div>
+</div>
 
       <div className="article-body">
+        <p>{article.body}</p>
       </div>
-      <p>{article.body}</p>
-      <Comments /> 
+
+      <p>
+          Category: <a href="">coding</a>
+        </p>
+      <div className="comment-container">
+        <Comments articleId={articleId} />
+      </div>
     </div>
-  
   );
 };
 
