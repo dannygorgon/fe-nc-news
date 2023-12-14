@@ -14,6 +14,7 @@ const Article = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [votes, setVotes] = useState(0);
   const [error, setError] = useState(null);
+  const [hasVoted , setHasVoted] = useState(false);
 
   useEffect(() => {
     getArticleById(articleId)
@@ -26,7 +27,12 @@ const Article = () => {
   }, [articleId]);
 
   const handleIncrementVote = (increment) => {
+    if (hasVoted) {
+      setError('You have already voted');
+      return;
+    }
     setVotes((previousVote) => previousVote + increment);
+    setHasVoted(true);
     patchArticleVotes(articleId, increment)
       .then(() => {
         setError(null);
@@ -34,6 +40,7 @@ const Article = () => {
       .catch((err) => {
         setError("Failed to update votes");
         setVotes((previousVote) => previousVote - increment);
+        setHasVoted(false);
       });
   };
 
@@ -53,9 +60,9 @@ const Article = () => {
       />
       <h1 className="text-3xl font-bold text-center">{article.title}</h1>
       <div className="detail-text flex justify-evenly items-center"> {/* Add items-center */}
-  <p>Written by {article.author}</p>
+  <p>Author: {article.author}</p>
   <p>
-    Posted on { "  "}
+    Posted: { "  "}
     {new Date(article.created_at).toLocaleDateString("en-GB", {
       day: "numeric",
       month: "long",
