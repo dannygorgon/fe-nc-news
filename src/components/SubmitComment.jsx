@@ -2,22 +2,34 @@ import { useState } from "react";
 
 const SubmitComment = ({ onSubmit }) => {
   const [comment, setComment] = useState("");
+  const [isSubmitted, setIsSubmitted] = useState(false);
+  const [error, setError] = useState(null);
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    onSubmit(comment)
-    console.log(comment);
+    setIsSubmitted(false);
+    setError(null);
+    try {
+      await onSubmit(comment);
+      setIsSubmitted(true);
+    } catch (err) {
+      setError('Failed to submit comment');
+    }
     setComment(""); 
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <label>
-        Comment:
-        <textarea value={comment} onChange={(e) => setComment(e.target.value)} />
-      </label>
-      <button type="submit">Submit</button>
-    </form>
+    <div>
+      {isSubmitted && <div style={{ color: 'green' }}>Form submitted</div>}
+      {error && <div style={{ color: 'red' }}>{error}</div>}
+      <form onSubmit={handleSubmit}>
+        <label>
+          Comment:
+          <textarea value={comment} onChange={(e) => setComment(e.target.value)} />
+        </label>
+        <button type="submit">Submit</button>
+      </form>
+    </div>
   );
 };
 

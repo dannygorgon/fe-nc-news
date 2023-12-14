@@ -4,6 +4,8 @@ import Button from '@mui/material/Button';
 import Avatar from '@mui/material/Avatar';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
+import { Link } from "react-router-dom";
+
 
 const Header = () => {
     const { user, setUser, loggedIn, setLoggedIn } = useContext(UserContext);
@@ -27,8 +29,7 @@ const Header = () => {
     return (
         <header>
             <div className="m-5 header-container flex justify-between">
-            <h1>NC News</h1>
-            <div className="flex items-center space-x-4"> 
+            <Button variant="contained" component={Link} to="/">NC News</Button>            <div className="flex items-center space-x-4"> 
                 {loggedIn && <p>{user}</p>}
                 {loggedIn ? (
                     <>

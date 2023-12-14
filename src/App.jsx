@@ -10,8 +10,8 @@ import ProfilePage from "./components/ProfilePage";
 function App() {
   return (
     <UserProvider>
-      <Header />
     <Router>
+      <Header />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/articles/:articleId" element={<Article />} />
