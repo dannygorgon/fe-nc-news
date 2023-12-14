@@ -5,6 +5,8 @@ import LoadSpinner from "./LoadSpinner";
 import { getCommentsByArticleId, postComment, apiDeleteComment} from "./utils/api";
 import SubmitComment from "./SubmitComment";
 import { UserContext } from "../../contexts/UserContexts";
+import DeleteIcon from '@mui/icons-material/Delete';
+
 
 function Comments() {
   const { articleId } = useParams();
@@ -52,13 +54,14 @@ function Comments() {
       <h1 className="text-2xl">Comments</h1>
       <SubmitComment onSubmit={handleCommentSubmit} />
       {comments.map((comment) => {
-  console.log(comment);
   return (
     <div key={comment.comment_id}>
       <div className="comments p-4 bg-slate-400 m-4">
-        <p>Author: {comment.author}</p>
+        <div style={{display: 'flex', justifyContent: 'space-between'}}>
+          <p>Author: {comment.author}</p>
+          <DeleteIcon style={{cursor: 'pointer'}} onClick={() => handleDeleteComment(comment.comment_id)} />
+        </div>
         <p>{comment.body}</p>
-        <button onClick={() => handleDeleteComment(comment.comment_id)}>Delete</button>
       </div>
     </div>
   );
