@@ -14,6 +14,7 @@ function Comments() {
   const [isLoading, setIsLoading] = useState(true);
   const { user } = useContext(UserContext);
   const [isDeleted, setIsDeleted] = useState(false);
+  const [loginError, setLoginError] = useState(false);
   useEffect(() => {
     setIsLoading(true);
     getCommentsByArticleId(articleId)
@@ -37,6 +38,11 @@ function Comments() {
   };
 
   const handleDeleteComment = (comment_id) => {
+    if (!user) {
+      setLoginError(true);
+
+      return;
+    }
     apiDeleteComment(comment_id)
       .then(() => {
         setComments((prevComments) => {
@@ -56,6 +62,7 @@ function Comments() {
       <h1 className="text-2xl">Comments</h1>
       <SubmitComment onSubmit={handleCommentSubmit} />
       {isDeleted && <div className="text-green-500">Message deleted</div>} {/* add this line */}
+      {loginError && <div className="text-red-500">You must log in to delete a comment</div>}
 
       {comments.map((comment) => {
   return (
