@@ -55,7 +55,7 @@ const Article = () => {
   }
 
   return (
-    <div className="article-container p-4 m-4  bg-gradient-to-t from-blue-500 to-neutral-300">
+    <div className="article-container p-4  bg-slate-300">
       <img
         className="block mx-auto"
         src={article.article_img_url}
@@ -86,14 +86,14 @@ const Article = () => {
         </div>
       </div>
 
-      <div className="article-body">
+      <div className="article-body p-4 text-clip">
         <p>{article.body}</p>
       </div>
 
       <p>
         Category: <a href="">coding</a>
       </p>
-      <div className="comment-container">
+      <div className="comment-container bg-orange-100">
         <Comments articleId={articleId} />
       </div>
     </div>

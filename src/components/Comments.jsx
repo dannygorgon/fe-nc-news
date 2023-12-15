@@ -70,7 +70,7 @@ function Comments() {
 
   return (
     <div>
-      <h1 className="text-2xl">Comments</h1>
+      <h1 className="text-2xl text-center font-extrabold">Comments</h1>
       <SubmitComment onSubmit={handleCommentSubmit} />
       {isDeleted && <div className="text-green-500">Message deleted</div>}{" "}
       {/* add this line */}

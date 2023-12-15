@@ -11,7 +11,9 @@ import ArticlesPage from "./components/pages/ArticlesPage";
 
 function App() {
   return (
-    <UserProvider>
+ 
+
+<UserProvider>
       <Router>
         <Header />
         <Routes>
@@ -23,6 +25,8 @@ function App() {
         </Routes>
       </Router>
     </UserProvider>
+
+
   );
 }
 

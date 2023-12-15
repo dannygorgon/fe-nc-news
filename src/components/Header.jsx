@@ -25,10 +25,10 @@ const Header = () => {
   
     return (
         <header>
-            <div className="m-5 header-container flex items-center justify-between">
-                <Link className="text-2xl text-blue-700 font-bold hover:text-blue-500" to="/">NC News</Link>
-                <Link className="text-lg text-blue-700 font-normal hover:text-blue-500" to="/topics">Topics</Link>
-        <div className="flex items-center text-blue-700 space-x-4">
+            <div className="header-container flex items-center justify-between bg-red-800 p-8">
+                <Link className="text-2xl text-white font-bold hover:text-blue-500" to="/">NC News</Link>
+                <Link className="text-lg text-white font-extrabold hover:text-blue-500" to="/topics">Topics</Link>
+        <div className="flex items-center text-lg text-white space-x-4 font-extrabold">
           {loggedIn && <p>{user}</p>}
           {loggedIn ? (
             <>
