@@ -15,6 +15,8 @@ function Comments() {
   const { user } = useContext(UserContext);
   const [isDeleted, setIsDeleted] = useState(false);
   const [loginError, setLoginError] = useState(false);
+  const [isDeleting, setIsDeleting] = useState(false);
+
   useEffect(() => {
     setIsLoading(true);
     getCommentsByArticleId(articleId)
@@ -36,22 +38,26 @@ function Comments() {
 
       .catch((err) => console.error(err));
   };
-
+  
   const handleDeleteComment = (comment_id) => {
-    if (!user) {
+    if (!user || isDeleting) {
       setLoginError(true);
-
       return;
     }
+    setIsDeleting(true);
     apiDeleteComment(comment_id)
       .then(() => {
+        setIsDeleting(false);
         setComments((prevComments) => {
           return prevComments.filter((comment) => comment.comment_id !== comment_id);
         });
-        setIsDeleted(true)
+        setIsDeleted(true);
       })
-      .catch((err) => console.error(err));
-  }
+      .catch((err) => {
+        setIsDeleting(false);
+        console.error(err);
+      });
+  };
 
   if (isLoading) {
     return <LoadSpinner />;
@@ -70,8 +76,14 @@ function Comments() {
       <div className="comments p-4 bg-slate-400 m-4">
         <div style={{display: 'flex', justifyContent: 'space-between'}}>
           <p>Author: {comment.author}</p>
-          <DeleteIcon style={{cursor: 'pointer'}} onClick={() => handleDeleteComment(comment.comment_id)} />
-        </div>
+          <DeleteIcon 
+  style={{cursor: 'pointer'}} 
+  onClick={() => {
+    if (!isDeleting) {
+      handleDeleteComment(comment.comment_id);
+    }
+  }} 
+/>        </div>
         <p>{comment.body}</p>
       </div>
     </div>

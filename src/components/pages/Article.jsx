@@ -54,8 +54,9 @@ const Article = () => {
   }
 
   return (
-    <div className="article-container p-4 m-4 bg-gradient-to-t from-blue-500 to-neutral-300">
+    <div className="article-container p-4 m-4  bg-gradient-to-t from-blue-500 to-neutral-300">
       <img
+      className="block mx-auto"
         src={article.article_img_url}
         alt={`A picture of ${article.title}`}
       />
