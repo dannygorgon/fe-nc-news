@@ -2,21 +2,10 @@ import React from "react";
 
 function LoadSpinner() {
   return (
-    <div className="loading-spinner">
-      <div className="loadingio-spinner-spinner-j1bk3azki7">
-        <div className="ldio-vudct9dnim">
-          <div></div>
-          <div></div>
-          <div></div>
-          <div></div>
-          <div></div>
-          <div></div>
-          <div></div>
-          <div></div>
-          <div></div>
-          <div></div>
-          <div></div>
-          <div></div>
+    <div className="spinner-container">
+      <div className="loadingio-spinner-spinner-5dipon17g1h">
+        <div className="ldio-s1ybzg295u">
+          <div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div>
         </div>
       </div>
     </div>

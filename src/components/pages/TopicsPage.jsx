@@ -1,22 +1,25 @@
+import React, { useState, useEffect } from 'react';
 import { getTopics } from "../utils/api";
-import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import TopicsList from '../TopicsList';
+import LoadSpinner from '../LoadSpinner';
+
 
 const TopicsPage = () => {
-    const [topics, setTopics] = useState([]);
+  const [topics, setTopics] = useState([]);
+  const [loading, setLoading] = useState(true);
 
-    useEffect(() => {
-      getTopics().then(setTopics);
-    }, []);
+  useEffect(() => {
+    getTopics().then((data) => {
+      setTopics(data.topics);
+      setLoading(false);
+    });
+  }, []);
 
-    
+  if (loading) {
+    return <LoadSpinner />;
+  }
 
+  return <TopicsList topics={topics} />; 
+};
 
-    return ( 
-        <div>
-            <h1>Topics</h1>
-        </div>
-     );
-}
- 
 export default TopicsPage;
