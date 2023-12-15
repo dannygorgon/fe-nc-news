@@ -1,4 +1,6 @@
 import { useState } from "react";
+import Button from '@mui/material/Button';
+import TextField from '@mui/material/TextField';
 
 const SubmitComment = ({ onSubmit }) => {
   const [comment, setComment] = useState("");
@@ -7,9 +9,9 @@ const SubmitComment = ({ onSubmit }) => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    setIsSubmitted(false); // Add this line
+    setIsSubmitted(false);
     if (!comment) {
-      setError('Comment cannot be empty');
+      setError("Comment cannot be empty");
       return;
     }
     setError(null);
@@ -17,21 +19,30 @@ const SubmitComment = ({ onSubmit }) => {
       await onSubmit(comment);
       setIsSubmitted(true);
     } catch (err) {
-      setError('Failed to submit comment');
+      setError("Failed to submit comment");
     }
     setComment("");
   };
 
   return (
     <div>
-      {isSubmitted && <div style={{ color: 'green' }}>Form submitted</div>}
-      {error && <div style={{ color: 'red' }}>{error}</div>}
-      <form onSubmit={handleSubmit}>
-        <label>
-          
-          <textarea placeholder="Enter a comment!" value={comment} onChange={(e) => setComment(e.target.value)} />
-        </label>
-        <button type="submit">Submit</button>
+      {isSubmitted && <div className="text-green-500">Form submitted</div>}
+      {error && <div className="text-red-500">{error}</div>}
+      <form onSubmit={handleSubmit} className="space-y-4">
+        <TextField 
+          multiline 
+          maxRows={4} 
+          variant="outlined" 
+          className="w-full" 
+          placeholder="Enter a comment!"
+          value={comment}
+          onChange={(e) => setComment(e.target.value)}
+        />
+        <div className="flex justify-center">
+          <Button variant="contained" color="primary" type="submit">
+            Submit
+          </Button>
+        </div>
       </form>
     </div>
   );

@@ -8,6 +8,7 @@ import Chip from "@mui/material/Chip";
 import Stack from "@mui/material/Stack";
 import ThumbUpIcon from "@mui/icons-material/ThumbUp";
 
+
 const Article = () => {
   const { articleId } = useParams();
   const [article, setArticle] = useState(null);
@@ -53,13 +54,14 @@ const Article = () => {
   }
 
   return (
-    <div className="article-container p-4 m-4 bg-gradient-to-t from-blue-500 to-neutral-300">
+    <div className="article-container p-4 m-4  bg-gradient-to-t from-blue-500 to-neutral-300">
       <img
+      className="block mx-auto"
         src={article.article_img_url}
         alt={`A picture of ${article.title}`}
       />
       <h1 className="text-3xl font-bold text-center">{article.title}</h1>
-      <div className="detail-text flex justify-evenly items-center"> {/* Add items-center */}
+      <div className="detail-text flex justify-evenly items-center"> 
   <p>Author: {article.author}</p>
   <p>
     Posted: { "  "}
@@ -71,7 +73,7 @@ const Article = () => {
   </p>
 
   {error && <p>{error}</p>}
-  <div className="flex items-center"> {/* Add this div */}
+  <div className="flex items-center"> 
     <Stack direction="row" spacing={1}>
       <Chip
         icon={<ThumbUpIcon />}

@@ -20,7 +20,7 @@ const Header = () => {
     };
 
     const logout = () => {
-      // Set user to null and loggedIn to false
+   
       setUser(null);
       setLoggedIn(false);
       handleClose();

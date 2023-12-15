@@ -46,3 +46,10 @@ export const postComment = (articleId, username, body) => {
     return { status: 'error', message: err.message };
   })
 }
+
+export const apiDeleteComment = (commentId) => {
+  return api
+    .delete(`/comments/${commentId}`)
+    .then((res) => res.data)
+    .catch((err) => console.error(err));
+}
