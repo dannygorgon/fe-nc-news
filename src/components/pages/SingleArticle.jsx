@@ -17,6 +17,8 @@ const Article = () => {
   const [hasVoted, setHasVoted] = useState(false);
 
   useEffect(() => {
+    console.log('Article ID:', articleId);
+
     getArticleById(articleId)
       .then((articleFromApi) => {
         setArticle(articleFromApi);
