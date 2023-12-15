@@ -19,7 +19,10 @@ const TopicsPage = () => {
     return <LoadSpinner />;
   }
 
-  return <TopicsList topics={topics} />; 
+  return  <div className=" ">
+ 
+  <TopicsList topics={topics} />;
+</div>
 };
 
 export default TopicsPage;
