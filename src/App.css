@@ -2,6 +2,9 @@
 @import 'tailwindcss/components';
 @import 'tailwindcss/utilities';
 
+#root {
+  min-width: 295px ;
+}
 * {
 
   padding: 0;

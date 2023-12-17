@@ -9,7 +9,7 @@ const TopicsList = ({ topics }) => {
   };
 
   return (
-    <div className="min-h-screen bg-slate-300"> {/* Add your desired background color class here */}
+    <div className="min-h-screen bg-slate-300"> 
       <div className="flex justify-evenly">
         {topics.map((topic) => {
           const colorClass = topicColors[topic.slug] || "bg-gray-500"; 
