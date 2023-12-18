@@ -31,7 +31,7 @@ function ViewArticles() {
       <div className="flex flex-col items-center bg-slate-300">
         {articles.map((article) => (
           <div
-            className="flex flex-col items-center border border-black rounded-5 bg-slate-200"
+            className="flex flex-col items-center border border-black rounded-5 bg-slate-200 m-2"
             key={article.article_id}
           >
             <Link to={`/articles/${article.article_id}`} className="text-center">
@@ -40,7 +40,7 @@ function ViewArticles() {
                 alt={`A picture of ${article.title}`}
                 className="w-full"
               />
-              <h2 className="font-extrabold text-2xl">{article.title}</h2>
+              <h2 className="font-extrabold text-2xl ">{article.title}</h2>
             </Link>
             <div className="text-xl ">
               <p className="">Written by {article.author}</p>
