@@ -53,3 +53,17 @@ export const apiDeleteComment = (commentId) => {
     .then((res) => res.data)
     .catch((err) => console.error(err));
 }
+
+export const getTopics = () => {
+  return api
+    .get('/topics')
+    .then((res) => res.data)
+    .catch((err) => console.error(err));
+}
+
+export const getArticlesByTopic = (topic) => {
+  return api
+    .get(`/articles?topic=${topic}`)
+    .then((res) => res.data)
+    .catch((err) => console.error(err));
+}

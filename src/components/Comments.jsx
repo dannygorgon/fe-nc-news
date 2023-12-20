@@ -2,11 +2,14 @@ import React, { useState, useEffect } from "react";
 import { useContext } from "react";
 import { useParams } from "react-router-dom";
 import LoadSpinner from "./LoadSpinner";
-import { getCommentsByArticleId, postComment, apiDeleteComment} from "./utils/api";
+import {
+  getCommentsByArticleId,
+  postComment,
+  apiDeleteComment,
+} from "./utils/api";
 import SubmitComment from "./SubmitComment";
 import { UserContext } from "../../contexts/UserContexts";
-import DeleteIcon from '@mui/icons-material/Delete';
-
+import DeleteIcon from "@mui/icons-material/Delete";
 
 function Comments() {
   const { articleId } = useParams();
@@ -38,7 +41,7 @@ function Comments() {
 
       .catch((err) => console.error(err));
   };
-  
+
   const handleDeleteComment = (comment_id) => {
     if (!user || isDeleting) {
       setLoginError(true);
@@ -49,7 +52,9 @@ function Comments() {
       .then(() => {
         setIsDeleting(false);
         setComments((prevComments) => {
-          return prevComments.filter((comment) => comment.comment_id !== comment_id);
+          return prevComments.filter(
+            (comment) => comment.comment_id !== comment_id
+          );
         });
         setIsDeleted(true);
       })
@@ -65,30 +70,33 @@ function Comments() {
 
   return (
     <div>
-      <h1 className="text-2xl">Comments</h1>
+      <h1 className="text-2xl text-center font-extrabold">Comments</h1>
       <SubmitComment onSubmit={handleCommentSubmit} />
-      {isDeleted && <div className="text-green-500">Message deleted</div>} {/* add this line */}
-      {loginError && <div className="text-red-500">You must log in to delete a comment</div>}
-
+      {isDeleted && <div className="text-green-500">Message deleted</div>}{" "}
+      {/* add this line */}
+      {loginError && (
+        <div className="text-red-500">You must log in to delete a comment</div>
+      )}
       {comments.map((comment) => {
-  return (
-    <div key={comment.comment_id}>
-      <div className="comments p-4 bg-slate-400 m-4">
-        <div style={{display: 'flex', justifyContent: 'space-between'}}>
-          <p>Author: {comment.author}</p>
-          <DeleteIcon 
-  style={{cursor: 'pointer'}} 
-  onClick={() => {
-    if (!isDeleting) {
-      handleDeleteComment(comment.comment_id);
-    }
-  }} 
-/>        </div>
-        <p>{comment.body}</p>
-      </div>
-    </div>
-  );
-})}
+        return (
+          <div key={comment.comment_id}>
+            <div className="comments p-4 bg-slate-400 m-4">
+              <div style={{ display: "flex", justifyContent: "space-between" }}>
+                <p>Author: {comment.author}</p>
+                <DeleteIcon
+                  style={{ cursor: "pointer" }}
+                  onClick={() => {
+                    if (!isDeleting) {
+                      handleDeleteComment(comment.comment_id);
+                    }
+                  }}
+                />{" "}
+              </div>
+              <p>{comment.body}</p>
+            </div>
+          </div>
+        );
+      })}
     </div>
   );
 }

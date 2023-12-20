@@ -20,33 +20,39 @@ function ViewArticles() {
 
   if (isLoading) return <LoadSpinner />;
   return (
-    <div className="flex flex-col justify-center items-center bg-gradient-to-t from-blue-500 to-neutral-300">
-      {articles.map((article) => (
-        <div
-          className="flex flex-col justify-center items-center border border-black m-10 p-10 rounded-5 bg-gray-200"
-          key={article.article_id}
-        >
-          <Link to={`/articles/${article.article_id}`}>
-            <img
-              src={article.article_img_url}
-              alt={`A picture of ${article.title}`}
-            />
-            <h2>{article.title}</h2>
-          </Link>
-          <p>Written by {article.author}</p>
-          <p>
-            Posted on {"  "}
-            {new Date(article.created_at).toLocaleDateString("en-GB", {
-              day: "numeric",
-              month: "long",
-              year: "numeric",
-            })}
-          </p>
-          <p>{article.votes} votes</p>
-          <p>{article.comment_count} comments</p>
-          Category: <a href="">coding</a>
-        </div>
-      ))}
+    <div className="">
+
+      <div className="flex flex-col items-center bg-slate-300">
+        {articles.map((article) => (
+          <div
+            className="flex flex-col items-center border border-black rounded-5 bg-slate-200 m-2"
+            key={article.article_id}
+          >
+            <Link to={`/articles/${article.article_id}`} className="text-center">
+              <img
+                src={article.article_img_url}
+                alt={`A picture of ${article.title}`}
+                className="w-full"
+              />
+              <h2 className="font-extrabold text-2xl ">{article.title}</h2>
+            </Link>
+            <div className="text-xl ">
+              <p className="">Written by {article.author}</p>
+              <p>
+                Posted on {"  "}
+                {new Date(article.created_at).toLocaleDateString("en-GB", {
+                  day: "numeric",
+                  month: "long",
+                  year: "numeric",
+                })}
+              </p>
+              <p>{article.votes} votes</p>
+              <p>{article.comment_count} comments</p>
+              Category: <a href="">coding</a>
+            </div>
+          </div>
+        ))}
+      </div>
     </div>
   );
 }
