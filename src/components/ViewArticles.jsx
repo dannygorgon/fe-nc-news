@@ -21,13 +21,7 @@ function ViewArticles() {
   if (isLoading) return <LoadSpinner />;
   return (
     <div className="">
-      <button
-  onClick={() => {
-    setItems((items) => [...items].sort());
-  }}
->
-  Sort alphabetically
-</button>
+
       <div className="flex flex-col items-center bg-slate-300">
         {articles.map((article) => (
           <div
