@@ -17,16 +17,22 @@ const Article = () => {
   const [hasVoted, setHasVoted] = useState(false);
 
   useEffect(() => {
-    console.log('Article ID:', articleId);
-
     getArticleById(articleId)
       .then((articleFromApi) => {
         setArticle(articleFromApi);
         setVotes(articleFromApi.votes);
         setIsLoading(false);
       })
-      .catch((err) => console.error(err));
+      .catch((err) => {
+        console.error(err);
+        setError('Article not found');
+        setIsLoading(false);
+      });
   }, [articleId]);
+
+  if (error) {
+    return <p>{error}</p>;
+  }
 
   const handleIncrementVote = (increment) => {
     if (hasVoted) {

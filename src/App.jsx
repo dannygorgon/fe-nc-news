@@ -11,9 +11,7 @@ import ArticlesPage from "./components/pages/ArticlesPage";
 
 function App() {
   return (
- 
-
-<UserProvider>
+    <UserProvider>
       <Router>
         <Header />
         <Routes>
@@ -21,12 +19,11 @@ function App() {
           <Route path="/articles/:articleId" element={<SingleArticle />} />
           <Route path="/profile" element={<ProfilePage />} />
           <Route path="/topics" element={<TopicsPage />} />
-          <Route path="/topics/:topicSlug" element={<ArticlesPage />} />{" "}
+          <Route path="/topics/:topicSlug" element={<ArticlesPage />} />
+          <Route path="*" element={<div>Error: This page does not exist</div>} /> {/* Catch-all route */}
         </Routes>
       </Router>
     </UserProvider>
-
-
   );
 }
 

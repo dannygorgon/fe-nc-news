@@ -4,17 +4,27 @@ import { getArticlesByTopic } from "../utils/api";
 
 const ArticlesPage = () => {
   const [articles, setArticles] = useState([]);
+  const [error, setError] = useState(null); // Add an error state variable
   const { topicSlug } = useParams();
 
   useEffect(() => {
     getArticlesByTopic(topicSlug)
       .then((data) => {
-        setArticles(data.articles);
+        if (data && data.articles) {
+          setArticles(data.articles);
+          setError(null); // Clear any previous errors
+        } else {
+          setError('No articles found for this topic');
+        }
       })
       .catch((error) => {
-        console.error("Failed to fetch articles", error);
+        setError('Failed to fetch articles'); // Set the error message
       });
   }, [topicSlug]);
+
+  if (error) {
+    return <div>Error: {error}</div>; // Render an error message
+  }
 
   return (
     <div className="flex flex-col justify-center items-center bg-gradient-to-t from-blue-500 to-neutral-300">
