@@ -15,7 +15,8 @@ Northcoders News is a dynamic web application built with React, serving as a pla
 
 ### Links
 
-- Live Site URL: [Add live site URL here](https://nc-news-2024.netlify.app/)
+- Live Site URL: [https://nc-news-2024.netlify.app/](https://nc-news-2024.netlify.app/)
+- Live API URL: [https://nc-news-riu3.onrender.com/api](https://nc-news-riu3.onrender.com/api)
 
 ## My process
 - Worked with mobile layout first
@@ -35,45 +36,13 @@ Northcoders News is a dynamic web application built with React, serving as a pla
 
 ### What I learned
 
-Learned fluid responsive. "font-size: calc(15px + 0.390625vw);" 
-
-This formula calculates our font size as 15px plus 0.00390625% of the screen width. These values have been specifically chosen because they result in the perfect font sizes at every breakpoint:
-
-
-```css
-p {
-        font-size: calc(15px + 0.390625vw);
-    }
-```
-
-Learned nested border radius - Thanks to 30 Seconds Code for the guide!! [@username](https://github.com/30-seconds)
-
-![](./border-radius.png) 
-
-
-```css
-.outer {
-  border-radius: 24px;
-  padding: 8px;
-}
-
-.inner {
-  border-radius: 16px;
-}
-```
+Used Tailwind CSS and Material UI
 
 ### Continued development
 
 - Wish to implement sorting
 - Improve overall styling
 - Add functional login
-
-
-
-### Useful resources
-
-
-
 
 ## Acknowledgments
 
