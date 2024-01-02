@@ -22,10 +22,10 @@ function ViewArticles() {
   return (
     <div className="">
 
-      <div className="flex flex-col items-center  bg-slate-300">
+<div className="flex flex-col items-center justify-center bg-slate-300 p-10 rounded-lg m-5 w-auto max-w-7xl mx-auto">
         {articles.map((article) => (
           <div
-          className="flex flex-col justify-center items-center border border-black m-5 p-10 rounded-5 bg-gray-200"
+          className="flex flex-col justify-center items-center border rounded-lg  m-5 p-10 rounded-5 bg-gray-200"
             key={article.article_id}
           >
             <Link to={`/articles/${article.article_id}`} className="text-center">

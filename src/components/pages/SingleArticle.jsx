@@ -7,6 +7,8 @@ import Comments from "../Comments";
 import Chip from "@mui/material/Chip";
 import Stack from "@mui/material/Stack";
 import ThumbUpIcon from "@mui/icons-material/ThumbUp";
+import { Link } from 'react-router-dom';
+
 
 const Article = () => {
   const { articleId } = useParams();
@@ -61,47 +63,48 @@ const Article = () => {
   }
 
   return (
-    <div className="flex flex-col justify-center items-center  bg-slate-300">
+    <div className="flex flex-col items-center justify-center bg-slate-300 p-10 rounded-lg m-5 w-auto max-w-7xl mx-auto">
       <img
-        className="block mx-auto"
+        className="w-full h-64 object-cover rounded-lg"
         src={article.article_img_url}
         alt={`A picture of ${article.title}`}
       />
-      <h1 className="text-3xl font-bold text-center">{article.title}</h1>
-      <div className="detail-text flex justify-evenly items-center">
-        <p>Author: {article.author}</p>
-        <p>
-          Posted: {"  "}
-          {new Date(article.created_at).toLocaleDateString("en-GB", {
-            day: "numeric",
-            month: "long",
-            year: "numeric",
-          })}
-        </p>
+      <h1 className="text-3xl font-bold text-center mt-5 text-black">{article.title}</h1>
+      <div className="detail-text flex items-center mt-5 text-black">
+  <p className="mr-5">Author: {article.author}</p>
+  <p className="mr-5">
+    Posted: {"  "}
+    {new Date(article.created_at).toLocaleDateString("en-GB", {
+      day: "numeric",
+      month: "long",
+      year: "numeric",
+    })}
+  </p>
 
-        {error && <p>{error}</p>}
-        <div className="flex items-center">
-          <Stack direction="row" spacing={1}>
-            <Chip
-              icon={<ThumbUpIcon />}
-              label={`Votes: ${votes}`}
-              clickable
-              onClick={() => handleIncrementVote(1)}
-            />
-          </Stack>
-        </div>
-      </div>
-
-      <div className="p-4 text-clip flex justify-center">
+  {error && <p className="mr-5">{error}</p>}
+  <div className="flex items-center">
+    <Stack direction="row" spacing={1}>
+      <Chip
+        icon={<ThumbUpIcon />}
+        label={`Votes: ${votes}`}
+        clickable
+        onClick={() => handleIncrementVote(1)}
+      />
+    </Stack>
+  </div>
+</div>
+  
+      <div className="p-4 text-clip flex justify-center bg-gray-200 m-5 rounded-lg text-black">
         <p>{article.body}</p>
       </div>
-
-      <div className="">
+  
+      <div className="p-4 text-clip flex justify-center bg-gray-200 m-5 rounded-lg text-black">
         <p>
-          Category: <a href="">coding</a>
+        Category: <Link to="/topics/coding" className="text-blue-500">coding</Link>
         </p>
       </div>
-      <div className="comment-container bg-orange-100">
+  
+      <div className="comment-container bg-gray-200  p-4 m-5 rounded-lg text-black">
         <Comments articleId={articleId} />
       </div>
     </div>
