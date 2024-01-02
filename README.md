@@ -15,8 +15,7 @@ Northcoders News is a dynamic web application built with React, serving as a pla
 
 ### Links
 
-- Solution URL: [Add solution URL here](https://github.com/dannygorgon/qr-code-card)
-- Live Site URL: [Add live site URL here](https://dannygorgon.github.io/qr-code-card/)
+- Live Site URL: [Add live site URL here](https://nc-news-2024.netlify.app/)
 
 ## My process
 - Worked with mobile layout first
