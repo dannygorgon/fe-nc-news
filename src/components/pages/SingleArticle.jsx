@@ -61,7 +61,7 @@ const Article = () => {
   }
 
   return (
-    <div className="article-container  bg-slate-300">
+    <div className="flex flex-col justify-center items-center  bg-slate-300">
       <img
         className="block mx-auto"
         src={article.article_img_url}

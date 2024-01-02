@@ -4,7 +4,7 @@ import { getArticlesByTopic } from "../utils/api";
 
 const ArticlesPage = () => {
   const [articles, setArticles] = useState([]);
-  const [error, setError] = useState(null); // Add an error state variable
+  const [error, setError] = useState(null); 
   const { topicSlug } = useParams();
 
   useEffect(() => {
@@ -12,25 +12,25 @@ const ArticlesPage = () => {
       .then((data) => {
         if (data && data.articles) {
           setArticles(data.articles);
-          setError(null); // Clear any previous errors
+          setError(null); 
         } else {
           setError('No articles found for this topic');
         }
       })
       .catch((error) => {
-        setError('Failed to fetch articles'); // Set the error message
+        setError('Failed to fetch articles'); 
       });
   }, [topicSlug]);
 
   if (error) {
-    return <div>Error: {error}</div>; // Render an error message
+    return <div>Error: {error}</div>;
   }
 
   return (
-    <div className="flex flex-col justify-center items-center bg-gradient-to-t from-blue-500 to-neutral-300">
+    <div className="flex flex-col justify-center items-center  bg-slate-300">
       {articles.map((article) => (
         <div
-          className="flex flex-col justify-center items-center border border-black m-10 p-10 rounded-5 bg-gray-200"
+          className="flex flex-col justify-center items-center border border-black m-5 p-10 rounded-5 bg-gray-200"
           key={article.article_id}
         >
           <Link to={`/articles/${article.article_id}`}>
@@ -38,8 +38,9 @@ const ArticlesPage = () => {
               src={article.article_img_url}
               alt={`A picture of ${article.title}`}
             />
-            <h2>{article.title}</h2>
+            <h2 className="text-center font-extrabold text-2xl ">{article.title}</h2>
           </Link>
+             <div className="text-xl ">
           <p>Written by {article.author}</p>
           <p>
             Posted on {"  "}
@@ -52,6 +53,7 @@ const ArticlesPage = () => {
           <p>{article.votes} votes</p>
           <p>{article.comment_count} comments</p>
           Category: <a href="">{topicSlug}</a>
+        </div>
         </div>
       ))}
     </div>
