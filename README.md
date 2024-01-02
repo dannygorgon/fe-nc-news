@@ -4,7 +4,7 @@
 
 ### Desktop Screenshot
 
-![](./preview.png) 
+![](./fullscreenarticle.png) 
 
 ### Mobile Screenshot (iPhone 14 Plus)
 ![](./mobilehome.png) 
