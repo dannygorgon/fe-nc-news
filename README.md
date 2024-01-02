@@ -7,9 +7,9 @@
 ![](./preview.png) 
 
 ### Mobile Screenshot (iPhone 14 Plus)
-
-![](./articlemobile.png) 
 ![](./mobilehome.png) 
+![](./articlemobile.png) 
+
 ### Links
 
 - Solution URL: [Add solution URL here](https://github.com/dannygorgon/qr-code-card)
